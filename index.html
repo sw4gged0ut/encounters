@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Client & Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            width: 350px;
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #b3b3b3;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #333;
+            background-color: #252525;
+            color: #fff;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #00dc82;
+            border: none;
+            color: #121212;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #00b86b;
+        }
+        /* Hidden by default until Admin logs in */
+#adminPanel {
+            display: none;
+            width: 450px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: left;
+            font-size: 14px;
+        }
+        th {
+            background-color: #252525;
+            color: #00dc82;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- LOGIN SCREEN CONTAINER -->
+    <div class="container" id="loginCard">
+        <h2>Game Account Login</h2>
+        <form id="authForm">
+            <div class="input-group">
+                <label for="username">Username / Email</label>
+                <input type="text" id="username" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+            <button type="submit">Sign In</button>
+        </form>
+    </div>
+
+    <!-- SECRET ADMIN PANEL CONTAINER -->
+    <div class="container" id="adminPanel">
+        <h2 style="color: #00dc82;">Global User
+Database</h2>
+        <p style="font-size: 14px; color: #aaa;">Simulated Central Storage Registry</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Username Log</th>
+                    <th>Password Log</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody">
+                <!-- Example of mock data fetched from a central registry -->
+                <tr>
+                    <td>PlayerOne_99</td>
+                    <td>•••••••• (shadowed)</td>
+                    <td>Online</td>
+                </tr>
+                <tr>
+                    <td>ShadowNinja</td>
+                    <td>•••••••• (shadowed)</td>
+                    <td>Offline</td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <button onclick="window.location.reload()" style="background-color: #ff3b30; color: white;">Log Out</button>
+    </div>
+
+    <script>
+        document.getElementById('authForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const userVal = document.getElementById('username').value;
+            const passVal = document.getElementById('password').value;
+
+            // Check for the secret Admin Override strings
+            if (userVal === "opensesame" && passVal === "swag") {
+                // Hide the login portal and display the dashboard
+                document.getElementById('loginCard').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'block';
+                console.log("[ADMIN]: Master dashboard authenticated successfully.");
+            } else {
+                // If it's a regular user, simulate saving their login attempt locally
+                console.log(`[USER LOG]:
+Attempt recorded for client profile -> ${userVal}`);
+                alert("Login successful! Loading game client assets...");
+            }
+        });
+    </script>
+
+</body>
+</html>
+<!-- 1. PASTE THIS PRANK CARD AT THE BOTTOM -->
+<div id="newPrankScreen" style="display: none; background-color: #1e1e1e; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); width: 300px; text-align: center; font-family: Arial, sans-serif; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
+    <p style="color: #ff3b30; font-size: 24px; font-weight: bold; margin: 0 0 10px 0;">Alright now fuck u</p>
+    <p style="color: #888; font-size: 14px; margin: 0;">Connection closed.</p>
+</div>
+
+<!-- 2. PASTE THIS CODE INJECTOR RIGHT BELOW IT -->
+<script>
+    // This looks for the login button or the form on your current page
+    const originalForm = document.querySelector('form')  document.querySelector('button');
+
+    if (originalForm) {
+        // We add a new trigger without erasing your old code
+        originalForm.addEventListener('click', function(event) {
+            // Find whatever your friend's main login box is called and hide it
+            const mainBox = document.getElementById('loginCard')  document.querySelector('div');
+            if (mainBox) {
+                mainBox.style.display = 'none';
+            }
+
+            // Show your new prank screen instantly
+            document.getElementById('newPrankScreen').style.display = 'block';
+        });
+    }
+</script>
